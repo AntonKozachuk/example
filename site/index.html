@@ -38,6 +38,9 @@
     </section>
   </main>
 
+  <h1>Authors</h1>
+  <ul id="authors"></ul>
+
   <footer>
     <section>
       Made with <img class="netliheart" title="love" src="/images/netliheart.svg" alt="love" width="1em"> by the <a href="https://netlify.com">Netlify</a> team. Explore <a href="https://github.com/netlify/example-site-boilerplate">the code</a> in GitHub. Follow <a href="https://twitter.com/netlify">@Netliify</a> on Twitter for regular updates</a>.
@@ -45,13 +48,35 @@
   </footer>
 
 
-  <!-- Browser-sync support for local development -->
-  <!-- <script id="__bs_script__">//<![CDATA[
-    document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.js?v=2.26.7'><\/script>".replace("HOST", location.hostname));
-//]]></script> -->
   <script>
-    const url = "https://bar.invalid/api?key=730d67a37d7f3d802e96396d00280768773813fbe726d116944d814422fc1a45&data=about:unicorn";
-    fetch(url).then(success, failure)
+    function createNode(element) {
+    return document.createElement(element);
+}
+
+function append(parent, el) {
+  return parent.appendChild(el);
+}
+
+const ul = document.getElementById('authors');
+const url = 'https://randomuser.me/api/?results=10';
+fetch(url)
+.then((resp) => resp.json())
+.then(function(data) {
+  let authors = data.results;
+  return authors.map(function(author) {
+    let li = createNode('li'),
+        img = createNode('img'),
+        span = createNode('span');
+    img.src = author.picture.medium;
+    span.innerHTML = `${author.name.first} ${author.name.last}`;
+    append(li, img);
+    append(li, span);
+    append(ul, li);
+  })
+})
+.catch(function(error) {
+  console.log(error);
+});
   </script>
 </body>
 </html>
