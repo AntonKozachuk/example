@@ -39,15 +39,31 @@
     </section>
   </main>
 
-  <h1>Authors</h1>
-  <ul id="authors"></ul>
-
   <footer>
     <section>
       Made with <img class="netliheart" title="love" src="/images/netliheart.svg" alt="love" width="1em"> by the <a href="https://netlify.com">Netlify</a> team. Explore <a href="https://github.com/netlify/example-site-boilerplate">the code</a> in GitHub. Follow <a href="https://twitter.com/netlify">@Netliify</a> on Twitter for regular updates</a>.
     </section>
   </footer>
+  <script>
+    fetch('/redocly/openapi/reference/operation/addPet/')
+  .then(
+    function(response) {
+      if (response.status !== 200) {
+        console.log('Looks like there was a problem. Status Code: ' +
+          response.status);
+        return;
+      }
 
+      // Examine the text in the response
+      response.json().then(function(data) {
+        console.log(data);
+      });
+    }
+  )
+  .catch(function(err) {
+    console.log('Fetch Error :-S', err);
+  });
+  </script>
 </body>
 </html>
 
