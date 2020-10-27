@@ -35,6 +35,7 @@
       <p>
         <a class="naked" href="https://app.netlify.com/start/deploy?repository=https://github.com/netlify/example-site-boilerplate"><img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify"></a>
       </p>
+      <a href="/redocly/developer-portal/">Redocly</a>
     </section>
   </main>
 
@@ -47,21 +48,6 @@
     </section>
   </footer>
 
-
-  <script>
-
-// alternatively you can get the collection as a CSV
-
-// all parameters are optional
-const firstFile = await api.customers.downloadCSV();
-
-// alternatively you can specify one or more of them
-const params = {limit: 20, offset: 100, sort: '-createdTime'}; 
-const secondFile = await api.customers.downloadCSV(params);
-
-// access the file data to view the CSV content 
-console.log(secondFile.data);
-  </script>
 </body>
 </html>
 
